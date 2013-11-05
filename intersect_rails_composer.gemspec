@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + "/version"
 
 Gem::Specification.new do |s|
   s.name        = "intersect_rails_composer"
-  s.version     = "0.0.1"
+  s.version     = "0.0.3"
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Marc Ziani de Ferranti", "Charles Shao", "Sean Lin"]
   s.email       = ["marc@intersect.org.au"]

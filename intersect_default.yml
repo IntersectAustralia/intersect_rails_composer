@@ -1,0 +1,32 @@
+recipes:
+- core
+
+prefs:
+  :apps4: none
+  :dev_webserver: webrick
+  :prod_webserver: same
+  :database: postgresql
+  :templates: haml
+  :unit_test: rspec
+  :integration: cucumber
+  :fixtures: factory_girl
+  :frontend: bootstrap3
+  :form_builder: simple_form
+  :email: gmail
+  :authentication: devise
+  :devise_modules: default
+  :authorization: cancan
+  :continuous_testing: none
+  :starter_app: admin_app
+  :ban_spiders: true
+  :github: false
+  :local_env_file: true
+  :quiet_assets: true
+  :better_errors: true
+  :rvmrc: true
+
+gems:
+
+args:
+  :skip_test_unit: yes
+  :skip_active_record: false
