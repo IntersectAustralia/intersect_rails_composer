@@ -6,7 +6,7 @@ module RailsWizard
     include Thor::Actions
     desc "new APP_NAME", "create a new Rails app"
     method_option :recipes, :type => :array, :aliases => "-r"
-    method_option :defaults, :type => :string, :aliases => "-d"
+    method_option :interactive, :type => :string, :aliases => "-i"
     method_option :recipe_dirs, :type => :array, :aliases => "-l"
     method_option :no_default_recipes, :type => :boolean, :aliases => "-L"
     method_option :template_root, :type => :string, :aliases => '-t'
@@ -66,8 +66,37 @@ module RailsWizard
       def load_defaults
         # Load defaults from a file; if a file specifies recipes, they'll be run *before*
         # any on the command line (or prompted for)..
-        return [[], {}] unless options[:defaults]
-        defaults = File.open(options[:defaults]) {|f| YAML.load(f) }
+        return [[], {}] if options[:interactive]
+        defaults = {
+          "recipes" => ["core"],
+          "prefs" => {
+            :apps4 => "none",
+            :dev_webserver => "webrick",
+            :prod_webserver => "same",
+            :database => "postgresql",
+            :templates => "haml",
+            :unit_test => "rspec",
+            :integration => "cucumber",
+            :fixtures => "factory_girl",
+            :frontend => "bootstrap3",
+            :form_builder => "simple_form",
+            :email => "gmail",
+            :authentication => "devise",
+            :devise_modules => "default",
+            :authorization => "cancan",
+            :continuous_testing => "none",
+            :starter_app => "admin_app",
+            :ban_spiders => true,
+            :github => false,
+            :local_env_file => true,
+            :quiet_assets => true,
+            :better_errors => true,
+            :rvmrc => true },
+          "gems" => nil,
+          "args" => {
+            :skip_test_unit => true,
+            :skip_active_record => false }
+        }
         recipes = defaults.delete('recipes') { [] }
         [recipes, defaults]
       end
