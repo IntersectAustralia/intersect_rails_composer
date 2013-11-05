@@ -22,9 +22,19 @@ after_everything do
     ## DEFAULT USER
     unless prefer :starter_app, false
       append_file 'config/application.yml' do <<-FILE
-ADMIN_NAME: First User
-ADMIN_EMAIL: user@example.com
-ADMIN_PASSWORD: changeme
+users:
+  - admin:
+    name: Test User 1
+    email: test@intersect.org.au
+    password: Pass.123
+  - user:
+    name: Test User 2
+    email: test2@intersect.org.au
+    password: Pass.123
+  - user:
+    name: Test User 3
+    email: test3@intersect.org.au
+    password: Pass.123
 FILE
       end
     end
@@ -38,7 +48,7 @@ FILE
     end
     ## AUTHORIZATION
     if (prefer :authorization, 'cancan')
-      append_file 'config/application.yml', "ROLES: [admin, user, VIP]\n"
+      append_file 'config/application.yml', "ROLES: [admin, user]\n"
     end
   end
   ### SUBDOMAINS ###
@@ -82,8 +92,12 @@ FILE
   if prefer :authentication, 'devise'
     append_file 'db/seeds.rb' do <<-FILE
 puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-puts 'user: ' << user.name
+application = YAML.load_file Rails.root.join('config/application.yml')
+application['users'].each do |user|
+  type = user.first[0]
+  u = User.find_or_create_by_email name: user['name'], email: user['email'], password: user['password'], password_confirmation: user['password']
+  u.add_role type.to_sym
+end
 FILE
     end
     # Mongoid doesn't have a 'find_or_create_by' method
