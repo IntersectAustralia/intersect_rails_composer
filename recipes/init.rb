@@ -108,7 +108,7 @@ FILE
     append_file 'db/seeds.rb', "user.confirm!\n"
   end
   if (prefer :authorization, 'cancan') && !(prefer :authentication, 'omniauth')
-    append_file 'db/seeds.rb', 'user.add_role :admin'
+    #append_file 'db/seeds.rb', 'user.add_role :admin'
   end
   ## DEVISE-INVITABLE
   if prefer :devise_modules, 'invitable'
