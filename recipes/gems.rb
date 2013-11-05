@@ -99,7 +99,7 @@ add_gem 'fabrication', :group => [:development, :test] if prefer :fixtures, 'fab
 add_gem 'machinist', :group => :test if prefer :fixtures, 'machinist'
 
 ## Front-end Framework
-add_gem 'rails_layout', :group => :development
+add_gem 'intersect_rails_layout', :group => :development
 case prefs[:frontend]
   when 'bootstrap2'
     add_gem 'bootstrap-sass', '~> 2.3.2.2'
