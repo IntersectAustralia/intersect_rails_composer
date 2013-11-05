@@ -3,17 +3,17 @@ $:.push File.expand_path("../lib", __FILE__)
 require File.dirname(__FILE__) + "/version"
 
 Gem::Specification.new do |s|
-  s.name        = "rails_apps_composer"
-  s.version     = RailsWizard::VERSION
+  s.name        = "intersect_rails_composer"
+  s.version     = "0.0.1"
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Daniel Kehoe"]
-  s.email       = ["daniel@danielkehoe.com"]
-  s.homepage    = "http://github.com/RailsApps/rails_apps_composer"
-  s.summary     = %q{A version of the RailsWizard gem with custom recipes for Rails starter apps.}
-  s.description = %q{A gem with recipes to create Rails application templates you can use to generate Rails starter apps.}
+  s.authors     = ["Marc Ziani de Ferranti", "Charles Shao", "Sean Lin"]
+  s.email       = ["marc@intersect.org.au"]
+  s.homepage    = "https://github.com/IntersectAustralia/intersect_rails_composer"
+  s.summary     = %q{Intersect rails application composer}
+  s.description = %q{A gem with default recipes to create rails application templates you can use to generate rails applications}
   s.license     = 'MIT'
 
-  s.rubyforge_project = "rails_apps_composer"
+  s.rubyforge_project = "intersect_rails_composer"
 
   s.add_dependency "i18n"
   s.add_dependency "activesupport"
@@ -26,6 +26,6 @@ Gem::Specification.new do |s|
 
   s.files         = Dir["lib/**/*.rb", "recipes/*.rb", "README.textile", "version.rb", "templates/*"]
   s.test_files    = Dir["spec/**/*"]
-  s.executables   = ["rails_apps_composer"]
+  s.executables   = ["intersect_rails_composer"]
   s.require_paths = ["lib"]
 end
