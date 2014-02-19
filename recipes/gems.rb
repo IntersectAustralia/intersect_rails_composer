@@ -179,7 +179,7 @@ after_bundler do
       begin
         pg_username = prefs[:pg_username] || ask_wizard("Username for PostgreSQL?(leave blank to use the app name)")
         if pg_username.blank?
-          say_wizard "Creating a user named '#{app_name}' for PostgreSQL"
+          say_wizard "Creating a user named '#{pg_username}' for PostgreSQL"
           run "createuser #{app_name}" if prefer :database, 'postgresql'
           gsub_file "config/database.yml", /username: .*/, "username: #{app_name}"
         else
